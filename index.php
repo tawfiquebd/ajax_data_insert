@@ -86,6 +86,7 @@ include_once "config/dbconfig.php";
                 }
             })
              alert("Success");
+          document.getElementById("form-insert").reset(); 
         })
 
 </script>
