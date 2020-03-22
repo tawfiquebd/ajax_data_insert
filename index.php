@@ -76,17 +76,24 @@ include_once "config/dbconfig.php";
             var email = $('#email').val();
             var phone = $('#phone').val();
             e.preventDefault();
-            $.ajax({
-                url:'save.php',
-                type: 'POST',
-                data:{
-                    name: name,
-                    email: email,
-                    phone: phone            
-                }
-            })
-             alert("Success");
-          document.getElementById("form-insert").reset(); 
+
+            if(name=='' || email=='' || phone==''){
+                alert("Please fill up all fields");
+                return false;
+            }
+            else{
+                $.ajax({
+                    url:'save.php',
+                    type: 'POST',
+                    data:{
+                        name: name,
+                        email: email,
+                        phone: phone            
+                    }
+                })
+            }
+            alert("Success");
+            document.getElementById("form-insert").reset(); 
         })
 
 </script>
