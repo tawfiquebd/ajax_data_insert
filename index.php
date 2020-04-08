@@ -7,11 +7,11 @@ include_once "config/dbconfig.php";
 
     <!-- Meta Tag -->
     <meta charset="UTF-8">
-    <meta name="author" content="Md Sahabuddin Nahid">
+    <meta name="author" content="Md Tawfique Hossain">
     <meta name="viewport" content="width=device-width , initial-scale=1">
     <meta name="description" content="Division Information related website">
     <meta http-equiv="X-UA-compatible" content="ie=edge , chrome=1">
-    <title>Division</title>
+    <title>Ajax Crud System Practice</title>
 
     <!-- Css Stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" media="all" />
@@ -47,15 +47,15 @@ include_once "config/dbconfig.php";
                     <form id="form-insert" method="post">
                         <div class="form-group">
                             <label for="divname">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Division Name">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                         </div>
                         <div class="form-group">
                             <label for="area">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Area">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <label for="districtname">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Number of District">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number">
                         </div>
 
                         <input type="submit" class="btn btn-block btn-success" id="save" name="save" value="Save" />
@@ -68,25 +68,29 @@ include_once "config/dbconfig.php";
 
 <script type="text/javascript">
     
-         // $('#save').on('click',function(e){
+         // $('#save').on('click',function(e){      //without form tag use it
 
          $('#form-insert').on('submit',function(e){
             
-            var name = $('#name').val();
+            var names = $('#name').val();
             var email = $('#email').val();
             var phone = $('#phone').val();
             e.preventDefault();
 
-            if(name=='' || email=='' || phone==''){
+            if(names=='' || email=='' || phone==''){
                 alert("Please fill up all fields");
                 return false;
             }
             else{
                 $.ajax({
                     url:'save.php',
-                    type: 'POST',
+                    type: 'post',
                     data:{
-                        name: name,
+                        // namee ta holo jeta amra save.php te $_POST['namee'] hisebe pass kortesi.. 
+
+                        // names ta holo nijer moto variable jeikhane value store korechi upore . var names $('#name').val();
+
+                        namee: names,    
                         email: email,
                         phone: phone            
                     }
