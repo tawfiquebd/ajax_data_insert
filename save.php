@@ -2,9 +2,9 @@
 
     include_once 'config/dbconfig.php';
 
-    if(isset($_POST['name'])){
+    if(isset($_POST['namee'])){
 
-        $name = $_POST["name"];
+        $name = $_POST["namee"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];
 
