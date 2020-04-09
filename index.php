@@ -35,7 +35,7 @@ include_once "config/dbconfig.php";
     </style>
 
 </head>
-<body>
+<body onload="getAllData()">
 
 <h3 class="text-center">Ajax Data Insert Practice | 2020</h3>
 
@@ -60,11 +60,18 @@ include_once "config/dbconfig.php";
 
                         <input type="submit" class="btn btn-block btn-success" id="save" name="save" value="Save" />
                     </form>
+                    
+                <h4 id="success-message" class="text-center text-success"></h4>
+                    
                 </div>
             </div>
         </div>
+
     </div>
 </section>
+
+<div id="viewData"></div>
+
 
 <script type="text/javascript">
     
@@ -83,26 +90,49 @@ include_once "config/dbconfig.php";
             }
             else{
                 $.ajax({
-                    url:'save.php',
+                    url:'process.php',
                     type: 'post',
                     data:{
                         // namee ta holo jeta amra save.php te $_POST['namee'] hisebe pass kortesi.. 
 
-                        // names ta holo nijer moto variable jeikhane value store korechi upore . var names $('#name').val();
+                        // and names ta holo uporer variable jeikhane value store korechi upore . var names $('#name').val();
 
                         namee: names,    
                         email: email,
-                        phone: phone            
+                        phone: phone,            
+                    },
+                    success: function(response){
+                        document.getElementById("viewData").innerHTML = response;
+                        document.getElementById("success-message").innerHTML = "Data inserted successfully";
                     }
+
                 })
             }
-            alert("Success");
+            // alert("success");
+            console.log("success");
             document.getElementById("form-insert").reset(); 
         })
+
+</script>
+
+<!-- View all data -->
+<script type="text/javascript">
+    
+         function getAllData(){
+            $.ajax({
+                    type: 'get',
+                    url:'process.php',
+                    dataType: "html",
+                    success: function(response){
+                        document.getElementById("viewData").innerHTML = response;
+                        // document.getElementById("success-message").innerHTML = "Data inserted successfully";
+
+                    }
+                });
+         }
 
 </script>
 
 </body>
 </html>
 
-?>
